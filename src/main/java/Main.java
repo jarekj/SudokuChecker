@@ -10,29 +10,36 @@ public class Main {
 //        System.out.println(isArrayCorrectString(input2));
 //        System.out.println(isArrayCorrectString(input3));
 
-        System.out.println(FR.readFromFile("input1.txt"));
-        String[] inputInArray = FR.readFromFile("input1.txt").split("\n");
+        System.out.println(FR.readFromFile("input4.txt"));
+        String[] inputInArray = FR.readFromFile("input4.txt").split("\n");
         System.out.println("------------");
-        System.out.println(inputInArray[0]);
-        System.out.println("------------");
-
-        for (int i = 0; i < 9; i++) {
-            System.out.println(readRow(inputInArray, i));
-            System.out.println(isArrayCorrectChar(readRow(inputInArray, i)));
-        }
+        System.out.println(readSquere(inputInArray, 1));
 
 
     }
 
-
+    private static char[] readSquere(String[] input, int sq){
+        char[] output = new char[9];
+        int startX, startY;
+        startX = 3;
+        startY = 0;
+        for (int i = 0; i < 3; i++) {
+            output[i] = input[startY].charAt(startX+i);
+            output[i+3] = input[startY+1].charAt(startX+i);
+            output[i+6] = input[startY+2].charAt(startX+i);
+        }
+        return output;
+    }
+    
     private static char[] readRow(String[] input, int row) {
         return input[row].toCharArray();
     }
-
+    
+    
     private static char[] readCollumn(String[] input, int collumn){
         char[] output = new char[9];
         for (int i = 0; i < 9; i++) {
-            output[i] = input[i].charAt(i);
+            output[i] = input[i].charAt(collumn);
         }
         return output;
     }
